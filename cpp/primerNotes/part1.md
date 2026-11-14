@@ -162,4 +162,22 @@ int &r=i; //here r is a reference type, r references to i
 
 ##### pointers
 
+- a pointer holds the memory address of another object or variable
+- ampersand is the 'address of' operator and is used to access memaddr of a variable or object
 
+Syntax:
+```cpp
+int i;
+int *p=&i; //p is a pointer to store address of i
+```
+
+- a null pointer doesnt point to an object, syntax:
+```cpp
+int *ab= nullptr; 
+```
+
+- a void pointer can store address of an object of any type, syntax:
+```cpp
+double obj=3.17;
+void *p=&obj; 
+```
