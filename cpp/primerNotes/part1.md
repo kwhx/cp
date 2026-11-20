@@ -9,20 +9,20 @@
 - signed = -ve and +ve both
 - unsigned = >=0
 
-| prefix                         |          type                  | representation | min size (in bits) | min size (in bytes) | range |
-|------------- | -----------------------------------|--------------------------------| --- | --- | --- | 
-|                                                | boolean                        | bool | n/a |
-| u8 (when and for string literals only)         | character                      | char | 8 |
-| L                                              | wide char                      | wchar_t | 16 |
-| u                                              | unicode 16 char                | char16_t | 16 |
-| U                                              | unicode 32 char                | char32_t | 32 |
-|                                                | short int                      | short | 16 |
-|                                                | integer                        | int | 16 |
-|                                                | long int                       | long | 32 |
-|                                                | long int                       | long long | 64 | 
-|                                                | single precision floating pt   | float | | 
-|                                                | double precision floating pt   | double | | 
-|                                                | extended precision floating pt | long double | |
+| prefix                         |          type                  | representation | min size (in bits) | min size (in bytes) | range                           |
+|------------- | -----------------------------------|--------------------------------|--------------------|---------------------|---------------------------------| 
+|                                                | boolean                        | bool | n/a                | -                   | true/false                      |
+| u8 (when and for string literals only)         | character                      | char | 8                  | 1                   | -                               |
+| L                                              | wide char                      | wchar_t | 16                 | 2 | -                               |
+| u                                              | unicode 16 char                | char16_t | 16                 | 2 | 0 to 65,535                     |
+| U                                              | unicode 32 char                | char32_t | 32                 | 4 | 0 to 4,294,967,295              |
+|                                                | short int                      | short | 16                 | 2 | −32,768 to 32,767               |
+|                                                | integer                        | int | 16                 | 2 | −32,768 to 32,767               |
+|                                                | long int                       | long | 32                 | 4 | −2,147,483,648 to 2,147,483,647 |
+|                                                | long int                       | long long | 64                 | 8 | −9.22 × 10^18 to 9.22 × 10^18   |
+|                                                | single precision floating pt   | float | 32                 | 4 | Approximately ±3.4 × 10^38 |
+|                                                | double precision floating pt   | double | 64                 | 8 | Approximately ±1.7 × 10^308 |
+|                                                | extended precision floating pt | long double | 64                 | 8 | - |
 
 - prefixes and suffixes are used to override the default types 
 
@@ -181,3 +181,48 @@ int *ab= nullptr;
 double obj=3.17;
 void *p=&obj; 
 ```
+Each star defines its own pointer level, as in:
+
+```cpp
+int x=1024;     // integer
+int *a=&x;      // pointer to integer
+int **b=&a;     // pointer to a pointer to an integer
+int ***c=&b;    // pointer to a pointer to a pointer to an integer
+```
+
+- A reference isnt an object, hence we cant have a pointer to a reference. But since a pointer is an object we can have a reference to a pointer.
+
+#### const
+
+- a variable can be made unchangeable by  using const type (in case of values that needs to remain a constant and shallnt change). E.G:
+```cpp
+const int bufferSize=1024;
+```
+
+- const vars are local to files, in case we divide our program into multiple files we'll have to initialise the same const var in each file if there was any in the original single codefile. To avoid this we use 'extern' keyword. As in:
+```cpp
+//file_1.cpp:
+extern const int buffersize=1024;
+
+//file_1.h:
+extern const int buffersize; //same buffersize as defined in file_1.cpp
+```
+
+- Top level const = int *const p
+- Low level const = const int *p
+
+#### constexpr
+
+- a constant expression is an expression whose value cant change. It's evaluated at compile time, not at runtime.
+- every const literal is a const expression if its value is initialised with definition. E.G:
+```cpp
+const int max=10; //max is a constant expression
+int size=20; //not a constant expression since int is plain and not a const
+const int sz = get(size); //sz isnt const expression since it has no initialised value at compile time
+```
+
+- If we want to use a var as a constant expression that cant be initialised at compile time, we'd need to be explicit by using the 'constexpr' term. As in:
+```cpp
+constexpr int sz=get(size);
+```
+
