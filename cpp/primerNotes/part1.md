@@ -58,79 +58,26 @@
 
 ### cpp reserved keywords
 
-- alignas
-- alignof
-- asm
-- auto
-- bool
-- break
-- case
-- catch
-- char
-- char16_t
-- char32_t
-- class
-- const
-- constexpr
-- const_cast
-- continue
-- decltype
-- default
-- delete
-- do
-- double
-- dynamic_cast
-- else
-- enum
-- explicit
-- export
-- extern
-- false
-- float
-- for
-- friend
-- goto
-- if
-- inline
-- int
-- long
-- mutable
-- namespace
-- new
-- noexcept
-- nullptr
-- operator
-- private
-- protected
-- public
-- register
-- reinterpret_cast
-- return
-- short
-- signed
-- sizeof
-- static
-- static_assert
-- static_cast
-- struct
-- switch
-- template
-- this
-- thread_local
-- throw
-- true
-- try
-- typedef
-- typeid
-- typename
-- union
-- unsigned
-- using
-- virtual
-- void
-- volatile
-- wchar_t
-- while
+| `alignas` | `alignof` | `asm` | `auto` |
+|---|---|---|---|
+| `bool` | `break` | `case` | `catch` |
+| `char` | `char16_t` | `char32_t` | `class` |
+| `const` | `constexpr` | `const_cast` | `continue` |
+| `decltype` | `default` | `delete` | `do` |
+| `double` | `dynamic_cast` | `else` | `enum` |
+| `explicit` | `export` | `extern` | `false` |
+| `float` | `for` | `friend` | `goto` |
+| `if` | `inline` | `int` | `long` |
+| `mutable` | `namespace` | `new` | `noexcept` |
+| `nullptr` | `operator` | `private` | `protected` |
+| `public` | `register` | `reinterpret_cast` | `return` |
+| `short` | `signed` | `sizeof` | `static` |
+| `static_assert` | `static_cast` | `struct` | `switch` |
+| `template` | `this` | `thread_local` | `throw` |
+| `true` | `try` | `typedef` | `typeid` |
+| `typename` | `union` | `unsigned` | `using` |
+| `virtual` | `void` | `volatile` | `wchar_t` |
+| `while` | — | — | — |
 
 ### alternative operator names
 
@@ -240,3 +187,98 @@ wages monthly, weekly;
 ```cpp
 auto item=item1+item2;
 ```
+### Strings
+
+- a string is  a variable length sequence of characters
+- string type is defined in cpp's 'std' namespace
+- to use it we must include the string header
+
+| Ways to initialise a string       |
+|-----------------------------------|
+| string s //default initialisation |
+| string s2(s1) //s2 is copy of s1  |
+| string s2 = s1 |
+| string s("value") //same meaning as below |
+| string s = "value" |
+| string s(n, 'c') //initialise s with n copies of char c |
+
+#### String operations
+
+| ??              | what dat mean                                                                                                                                                |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| getline(cin, s) | cin>>s would only read the first word of input string by user, doesnt accept space. Hence getline is used cuz it allows space and read till enter is pressed |
+| s.empty()       | checks if string is empty, returns boolean                                                                                                                   |
+| s.size()        | returns size of string                                                                                                                                       | 
+| s[n]            | returns value at certain index; n=index num                                                                                                                  |
+
+#### Operations on characters of a string
+
+- if we wanna do smth to each character of a string, best approach is to use the 'range for' statement, syntax:
+```cpp
+for (declaration : expression)
+    statement
+```
+E.G:
+```cpp
+string s="hello"
+for (char c : s)
+    cout<<c;
+```
+Detailed e.g:
+```cpp
+// finding all punctuation marks in a string
+#include <string>
+#include <iostream>
+using std::string;
+using std::cout;
+int main(){
+    int punc_cnt=0;
+    string s="hello, kst!!";
+            for (char c:s)
+                if(ispunct(c)){
+                    ++punc_cnt;
+                }
+    cout<<punc_cnt;
+    return 0;        
+}
+```
+
+- cctype is a header that includes names from c language
+
+#### cctype string functions
+
+| function | what its for                                                                |
+| --- |-----------------------------------------------------------------------------|
+| `isalnum(c)` | true if `c` is an alphanumeric character (letter or digit).                 |
+| `isalpha(c)` | true if `c` is an alphabetic character (A–Z or a–z).                 |
+| `iscntrl(c)` | true if `c` is a control character (e.g., newline, tab).             |
+| `isdigit(c)` | true if `c` is a decimal digit (0–9).                                |
+| `isgraph(c)` | true if `c` is a printable character other than a space.             |
+| `islower(c)` | true if `c` is a lowercase letter (a–z).                             |
+| `isupper(c)` | true if `c` is an uppercase letter (A–Z).                            |
+| `ispunct(c)` | true if `c` is a punctuation character (e.g., !, ?, .).              |
+| `isspace(c)` | true if `c` is a whitespace character (e.g., space, tab, newline).   |
+| `isprint(c)` | true if `c` is a printable character (including space).              |
+| `isxdigit(c)` | true if `c` is a hexadecimal digit (0–9, A–F, a–f).                  |
+| `tolower(c)` | Converts an uppercase letter to lowercase; otherwise, returns it unchanged. |
+| `toupper(c)` | Converts a lowercase letter to uppercase; otherwise, returns it unchanged.  |
+
+- if we wanna change characters of a string, we shall use references to  do so, e.g:
+```cpp
+string s="hello kst";
+for (&c:s)
+    c = toupper(r); //c is a reference to each original character so here we're assigning capital values to each and thus changing the whole string
+cout<<s;
+```
+
+- a range for statement works we'll when we need to work with all characters of a string but if we wanna work on only certain characters rather all, we use the subscript operator and provide the index
+- E.g;
+```cpp
+string s="hello kst;
+if(!s.empty()){
+    s[0]=toupper(s[0]);
+}
+cout<<s;
+```
+
+### Vectors
