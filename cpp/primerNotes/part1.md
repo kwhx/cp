@@ -226,3 +226,17 @@ const int sz = get(size); //sz isnt const expression since it has no initialised
 constexpr int sz=get(size);
 ```
 
+#### Type aliases
+
+- a type alias is simply a synonym for a type or var
+```cpp
+typedef double wages;
+using si=sales_item;
+
+wages monthly, weekly;
+```
+
+- it can become complex to determine the type of something or what type to choose for something, in certain programs. To resolve that we use the 'auto' keyword which lets the compiler decide the type by the kind of values being worked on. E.G:
+```cpp
+auto item=item1+item2;
+```
