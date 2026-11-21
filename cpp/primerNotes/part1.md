@@ -282,3 +282,67 @@ cout<<s;
 ```
 
 ### Vectors
+
+- a vector is basically just a collection of objects of same dt
+- std::vector+include vector header file, to use
+- a vector is a template, not a type, so the type  needs to be declared with teh declaration as well, as in:
+```cpp
+vector<int> nums;
+vector<Sales_items> salesitemclassvector;
+vector<vector<string>> file;
+vector<string> articles = {"a", "an", "the"};
+```
+
+- We can specify the limit/range of items to be stored in the vector with the following syntax;
+```cpp
+vector<type> vec(n, value); //here n is the range, a vector of range 10 can have 10 elements
+vector<int> randoms(10, 6); //this vector will have 10 nums, all 6s
+```
+
+#### Ways to initialise a vector
+
+| method | what it does |
+| --- | --- |
+| `vector<T> v1`                | Creates an empty vector of type `T`.                                                        |
+| `vector<T> v2(v1)`            | Creates `v2` as a copy of `v1` (copy initialization using parentheses).                     |
+| `vector<T> v2 = v1`           | Creates `v2` as a copy of `v1` (copy initialization using `=`).                             |
+| `vector<T> v3(n, val)`        | Creates a vector containing `n` elements, each initialized to `val`.                        |
+| `vector<T> v4(n)`             | Creates a vector containing `n` elements, each value-initialized (e.g., `0` for `int`).     |
+| `vector<T> v5{a, b, c, d}`    | Creates a vector containing the elements `a`, `b`, `c`, and `d` (list initialization).      |
+| `vector<T> v6 = {a, b, c, d}` | Creates a vector containing the elements `a`, `b`, `c`, and `d` (copy-list initialization). |
+
+Make sure of braces in these fuckers:
+```cpp
+vector<int> v1(10) //10 elements with value 0
+vector<int> v1(10, 1) //10 elements each with value 1
+vector<int> v2{10} //1 element with value 10
+vector<int> v2{10, 1} //2 element with values 10 & 1
+```
+To add elements in a vector we use the '.push_back()' function, e.g:
+```cpp
+vector<int> v;
+for(int i=0; i<=100; i++)
+    v.push_back(i);
+```
+
+#### Vector Operations
+
+| Operation          | What it does                                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------------------------ |
+| `v.empty()`        | Returns `true` if the vector is empty; otherwise returns `false`.                                      |
+| `v.size()`         | Returns the number of elements in the vector (`size_type`).                                            |
+| `v.push_back(t)`   | Adds element `t` to the end of the vector.                                                             |
+| `v[n]`             | Accesses the element at index `n` (zero-based indexing). Does not perform bounds checking.             |
+| `v.at(n)`          | Accesses the element at index `n`. Performs bounds checking and throws `std::out_of_range` if invalid. |
+| `v.pop_back()`     | Removes the last element of the vector.                                                                |
+| `v.front()`        | Returns a reference to the first element.                                                              |
+| `v.back()`         | Returns a reference to the last element.                                                               |
+| `v.clear()`        | Removes all elements from the vector.                                                                  |
+| `v.begin()`        | Returns an iterator pointing to the first element.                                                     |
+| `v.end()`          | Returns an iterator pointing just past the last element.                                               |
+| `v.insert(pos, t)` | Inserts element `t` before the position specified by `pos`.                                            |
+| `v.erase(pos)`     | Removes the element at the position specified by `pos`.                                                |
+| `v.resize(n)`      | Changes the vector's size to `n`.                                                                      |
+| `v.reserve(n)`     | Allocates capacity for at least `n` elements without changing its size.                                |
+| `v.capacity()`     | Returns the number of elements the vector can hold without reallocating memory.                        |
+

@@ -1,13 +1,18 @@
 #include <string>
+#include <vector>
 #include <iostream>
-
 using std::string;
+using std::cin;
 using std::cout;
-
+using std::vector;
 int main(){
-    string s="hello kst";
-    if(!s.empty()){
-        s[2]=toupper(s[2]);
+    string s;
+    getline(cin, s);
+    vector<string> words;
+    words.push_back(s);
+    for(auto r:words){
+        cout<<r<<" "<<"\n";
     }
-    cout<<s;
+    cout<<words.size();
+    return 0;
 }
