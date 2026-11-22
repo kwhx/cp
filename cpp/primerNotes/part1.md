@@ -422,3 +422,53 @@ for(auto it=text.cbegin(); it!=text.cend() && !it->empty(); ++it){
 auto mid=vi.begin()+(vi.size()/2);
 ```
 
+### Arrays
+
+An array is a data structure that is similar to a vector, difference being that an array has fixed size unlike a vector. We cant add more elements than the size of the array.
+- Arrays provides better runtime performance than vectors
+
+Initialisation: 
+```cpp
+int arr[3]={0,1,2};
+```
+- Character arrays are special, they can be initialised using a string literal (string literals ends with a null character hence character arrays has a null char as last element)
+```cpp
+char a1[]={'c', '+', '+'}; //no null
+char a2[]={'c','+','+', '\0'}; //explicit null
+char a3[]={"c++"}; // null will be added automatically
+const char a4[3]={"c++"}; //will error since no space is left for null
+```
+
+**We cannot assign an array to another array, copy and assignment is banned between arrays**
+
+| Declaration                         | Meaning                                                       |
+| ----------------------------------- | ------------------------------------------------------------- |
+| `int (*ptr)[5];`                    | Declares a pointer to an array of 5 integers.                 |
+| `int arr[5]; int (*ptr)[5] = &arr;` | Initialises the pointer with the address of the entire array. |
+| `(*ptr)[i]`                         | Accesses the element at index `i`.                            |
+| `ptr + 1`                           | Advances by the size of an entire array (5 integers).         |
+| `int (&ref)[5] = arr;` | Declares a reference to an array of 5 integers. |
+| `ref[i]`               | Accesses the element at index `i`.              |
+
+| Pointer to Array                                         | Reference to Array                                  |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| `int (*ptr)[5]`                                          | `int (&ref)[5]`                                     |
+| Can be uninitialised when declared locally.              | Must be initialised at declaration.                 |
+| Can be reassigned to point to another compatible array.  | Cannot be reseated to refer to another array.       |
+| Requires dereferencing to access the array: `(*ptr)[i]`. | Accesses elements directly: `ref[i]`.               |
+| Can be null.                                             | Cannot be a null reference in valid ordinary usage. |
+
+```cpp
+int ia[]={0,1,2,3,4};
+int *beg=begin(ia);
+int *last=end(ia);
+```
+
+#### Multidimensional arrays
+
+- cpp doesnt have multidimensional arrays, whats mentioned as multidi arrays are usually: 'Multidimensional array = array of array'
+```cpp
+int arr[2][4]={1,2,3,4,5,6,7,8};  //array of 2 ints where each of these 2 elements is an array of 4 ints. In this case the first array has {1,2,3,4} and second has {5,6,7,8}
+int arr[10][20][30]={0};        // array of 10 ints where each of these 10 is an array of 20 ints where each of these 20 is an array of 30 integers; all initialised to 0
+```
+
