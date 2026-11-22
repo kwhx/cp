@@ -346,3 +346,79 @@ for(int i=0; i<=100; i++)
 | `v.reserve(n)`     | Allocates capacity for at least `n` elements without changing its size.                                |
 | `v.capacity()`     | Returns the number of elements the vector can hold without reallocating memory.                        |
 
+### Iterators
+
+- We indeed can use the subscript operator to access elements of a vector or chars of a string but a better approach is iterators since not all container types support the subscript operator but they all support iterators
+- Each type that supports iterators provides members to use the iterator: 'begin' and 'end' are 2 such members which returns an iterator that denotes the first and last elements of the container. E.G:
+```cpp
+auto b=v.begin();
+auto e=v.end();
+```
+- tbh, end doesnt return the last element, instead it returns an off the end value, i.e. value after the last element which marks the end.
+- 2 iterators are equal if they denote the same element or are both off-the-end iterators.
+- As with pointers we can dereference an iterator, e.g:
+```cpp
+string s("kst");
+if(s.begin()!=s.end()){
+    auto it=s.begin();
+    *it=toupper(*it);
+}
+cout<<s; //shall return Kst
+```
+
+| Iterator Operation | Description                       |
+| ------------------ | --------------------------------- |
+| `*it`              | Accesses the element              |
+| `it->mem`          | Accesses a member of the element  |
+| `++it`             | Moves to the next element         |
+| `--it`             | Moves to the previous element     |
+| `it1 == it2`       | Checks if iterators are equal     |
+| `it1 != it2`       | Checks if iterators are not equal |
+
+Moving iterator from one element to another:
+```cpp
+for(auto it=s.begin(); it!=s.end() && !isspace(*it); ++it){
+    *it=toupper(*it);
+}
+```
+
+- Iterator itself is a type. Regarding thsi context theres two types defined in stl: iterator & const_iterator.
+```cpp
+vector<int> :: iterator it; //'it' can r&w vector<int> elements
+string::iterator it2; //'it2' can r&w chars in a string
+vector<int> :: const_iterator it3; //'it3' can read but not write elements
+string::const_iterator it4; //'it4' can read but not write chars
+```
+
+- If the object is const, begin and end will return a 'const_iterator' type. If it isnt then theyll return an 'iterator' type.
+- The new standard provides two new function for the same, 'cbegin' & 'cend', which regardless of the type of object will have const_iterator type
+```cpp
+auto it=v.cbegin();
+```
+
+- To combine dereferencing and member access we do the following:
+```cpp
+(*it).empty() 
+```
+here, were trying to check if the object our iterator points to is empty or not but notice how *it is in parentheses.
+
+- To simplify such operations the new standard provides the arrow operator for member access. '(*it).mem' = 'it->mem'
+```cpp
+for(auto it=text.cbegin(); it!=text.cend() && !it->empty(); ++it){
+    cout<<*it;
+}
+```
+
+| Operations supported by vector and string iterators   | Description                                |
+| ----------- | ------------------------------------------ |
+| `it + n`    | Moves iterator forward by `n` positions    |
+| `it - n`    | Moves iterator backward by `n` positions   |
+| `it += n`   | Advances iterator by `n` positions         |
+| `it -= n`   | Moves iterator backward by `n` positions   |
+| `it1 - it2` | Returns the distance between two iterators |
+
+```cpp
+//computing an iterator to the element closest to the mid of vector vi
+auto mid=vi.begin()+(vi.size()/2);
+```
+

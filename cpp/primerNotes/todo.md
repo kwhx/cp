@@ -1,0 +1,1 @@
+- read a set of integers into a vector, print sum of each adjacent pair, also print sum of first and last elements and sum of second and last second and so on for all
