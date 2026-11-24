@@ -1,13 +1,13 @@
 // chapter 2-8
 
-## dt
+## DT
 
-- cpp provides builtin/primitive types (primitive types = arithmetic types + void)
-- arithmetic types includes int, bool, char, float etc
-- void is special and can only be used in certain circumstances, most commonly as return type when a func doesnt return a value 
-- except for bool and extended character types, teh integer types can be either signed or unsigned
-- signed = -ve and +ve both
-- unsigned = >=0
+- CPP provides builtin/primitive types (primitive types = arithmetic types + void)
+- Arithmetic types includes int, bool, char, float etc
+- Void is special and can only be used in certain circumstances, most commonly as return type when a func doesnt return a value 
+- Except for bool and extended character types, teh integer types can be either signed or unsigned
+- Signed = -ve and +ve both
+- Unsigned = >=0
 
 | prefix                         |          type                  | representation | min size (in bits) | min size (in bytes) | range                           |
 |------------- | -----------------------------------|--------------------------------|--------------------|---------------------|---------------------------------| 
@@ -24,7 +24,7 @@
 |                                                | double precision floating pt   | double | 64                 | 8 | Approximately ±1.7 × 10^308 |
 |                                                | extended precision floating pt | long double | 64                 | 8 | - |
 
-- prefixes and suffixes are used to override the default types 
+- Prefixes and suffixes are used to override the default types 
 
 | suffix | meaning |
 | --- | --- |
@@ -33,12 +33,12 @@
 | LL | long long |
 | f | float |
 
-### type conversion
+### Type Conversion
 
-- values behaves drunk when youre trying to mate unsigned with a signed or vice versa, it wraps around, need to be careful bout this and understand each scenario about this, imp for cp
+- Values behaves drunk when youre trying to mate unsigned with a signed or vice versa, it wraps around, need to be careful bout this and understand each scenario about this, imp for cp
 - DONT MIX SIGNED AND UNSIGNED VALUES
 
-### escape sequences
+### Escape Sequences
 
 | es | ?? |
 | --- | --- |
@@ -56,7 +56,7 @@
 
 ### todo: extern keyword (context: declaration vs definition)
 
-### cpp reserved keywords
+### Reserved keywords
 
 | `alignas` | `alignof` | `asm` | `auto` |
 |---|---|---|---|
@@ -79,7 +79,7 @@
 | `virtual` | `void` | `volatile` | `wchar_t` |
 | `while` | — | — | — |
 
-### alternative operator names
+### Alternative Operator Names
 
 - add
 - and_eq
@@ -93,13 +93,13 @@
 - xor
 - xor_eq
 
-### compound types
+### Compound Types
 
-##### references
+##### References
 
-- a reference is basically just an alias to a variable/object and nothing else
-- a reference can only be bind to an object/variable and not to a literal value
-- declared using ampersand
+- A reference is basically just an alias to a variable/object and nothing else
+- A reference can only be bind to an object/variable and not to a literal value
+- Declared using ampersand
 
 Syntax:
 ```cpp
@@ -107,10 +107,10 @@ int i=2;
 int &r=i; //here r is a reference type, r references to i
 ```
 
-##### pointers
+##### Pointers
 
-- a pointer holds the memory address of another object or variable
-- ampersand is the 'address of' operator and is used to access memaddr of a variable or object
+- A pointer holds the memory address of another object or variable
+- Ampersand is the 'address of' operator and is used to access memaddr of a variable or object
 
 Syntax:
 ```cpp
@@ -118,12 +118,12 @@ int i;
 int *p=&i; //p is a pointer to store address of i
 ```
 
-- a null pointer doesnt point to an object, syntax:
+- A null pointer doesnt point to an object, syntax:
 ```cpp
 int *ab= nullptr; 
 ```
 
-- a void pointer can store address of an object of any type, syntax:
+- A void pointer can store address of an object of any type, syntax:
 ```cpp
 double obj=3.17;
 void *p=&obj; 
@@ -139,14 +139,14 @@ int ***c=&b;    // pointer to a pointer to a pointer to an integer
 
 - A reference isnt an object, hence we cant have a pointer to a reference. But since a pointer is an object we can have a reference to a pointer.
 
-#### const
+#### Const
 
-- a variable can be made unchangeable by  using const type (in case of values that needs to remain a constant and shallnt change). E.G:
+- A variable can be made unchangeable by  using const type (in case of values that needs to remain a constant and shallnt change). E.G:
 ```cpp
 const int bufferSize=1024;
 ```
 
-- const vars are local to files, in case we divide our program into multiple files we'll have to initialise the same const var in each file if there was any in the original single codefile. To avoid this we use 'extern' keyword. As in:
+- Const vars are local to files, in case we divide our program into multiple files we'll have to initialise the same const var in each file if there was any in the original single codefile. To avoid this we use 'extern' keyword. As in:
 ```cpp
 //file_1.cpp:
 extern const int buffersize=1024;
@@ -158,10 +158,10 @@ extern const int buffersize; //same buffersize as defined in file_1.cpp
 - Top level const = int *const p
 - Low level const = const int *p
 
-#### constexpr
+#### Constexpr
 
-- a constant expression is an expression whose value cant change. It's evaluated at compile time, not at runtime.
-- every const literal is a const expression if its value is initialised with definition. E.G:
+- A constant expression is an expression whose value cant change. It's evaluated at compile time, not at runtime.
+- Every const literal is a const expression if its value is initialised with definition. E.G:
 ```cpp
 const int max=10; //max is a constant expression
 int size=20; //not a constant expression since int is plain and not a const
@@ -175,7 +175,7 @@ constexpr int sz=get(size);
 
 #### Type aliases
 
-- a type alias is simply a synonym for a type or var
+- A type alias is simply a synonym for a type or var
 ```cpp
 typedef double wages;
 using si=sales_item;
@@ -183,15 +183,15 @@ using si=sales_item;
 wages monthly, weekly;
 ```
 
-- it can become complex to determine the type of something or what type to choose for something, in certain programs. To resolve that we use the 'auto' keyword which lets the compiler decide the type by the kind of values being worked on. E.G:
+- It can become complex to determine the type of something or what type to choose for something, in certain programs. To resolve that we use the 'auto' keyword which lets the compiler decide the type by the kind of values being worked on. E.G:
 ```cpp
 auto item=item1+item2;
 ```
 ### Strings
 
-- a string is  a variable length sequence of characters
-- string type is defined in cpp's 'std' namespace
-- to use it we must include the string header
+- A string is  a variable length sequence of characters
+- String type is defined in cpp's 'std' namespace
+- To use it we must include the string header
 
 | Ways to initialise a string       |
 |-----------------------------------|
@@ -213,7 +213,7 @@ auto item=item1+item2;
 
 #### Operations on characters of a string
 
-- if we wanna do smth to each character of a string, best approach is to use the 'range for' statement, syntax:
+- If we wanna do smth to each character of a string, best approach is to use the 'range for' statement, syntax:
 ```cpp
 for (declaration : expression)
     statement
@@ -243,7 +243,7 @@ int main(){
 }
 ```
 
-- cctype is a header that includes names from c language
+**cctype is a header that includes names from c language**
 
 #### cctype string functions
 
@@ -263,7 +263,7 @@ int main(){
 | `tolower(c)` | Converts an uppercase letter to lowercase; otherwise, returns it unchanged. |
 | `toupper(c)` | Converts a lowercase letter to uppercase; otherwise, returns it unchanged.  |
 
-- if we wanna change characters of a string, we shall use references to  do so, e.g:
+- If we wanna change characters of a string, we shall use references to  do so, e.g:
 ```cpp
 string s="hello kst";
 for (&c:s)
@@ -271,7 +271,7 @@ for (&c:s)
 cout<<s;
 ```
 
-- a range for statement works we'll when we need to work with all characters of a string but if we wanna work on only certain characters rather all, we use the subscript operator and provide the index
+- A range for statement works we'll when we need to work with all characters of a string but if we wanna work on only certain characters rather all, we use the subscript operator and provide the index
 - E.g;
 ```cpp
 string s="hello kst;
@@ -283,9 +283,9 @@ cout<<s;
 
 ### Vectors
 
-- a vector is basically just a collection of objects of same dt
+- A vector is basically just a collection of objects of same dt
 - std::vector+include vector header file, to use
-- a vector is a template, not a type, so the type  needs to be declared with teh declaration as well, as in:
+- A vector is a template, not a type, so the type  needs to be declared with teh declaration as well, as in:
 ```cpp
 vector<int> nums;
 vector<Sales_items> salesitemclassvector;
@@ -466,7 +466,7 @@ int *last=end(ia);
 
 #### Multidimensional arrays
 
-- cpp doesnt have multidimensional arrays, whats mentioned as multidi arrays are usually: 'Multidimensional array = array of array'
+- C++ doesnt have multidimensional arrays, whats mentioned as multidi arrays are usually: 'Multidimensional array = array of array'
 ```cpp
 int arr[2][4]={1,2,3,4,5,6,7,8};  //array of 2 ints where each of these 2 elements is an array of 4 ints. In this case the first array has {1,2,3,4} and second has {5,6,7,8}
 int arr[10][20][30]={0};        // array of 10 ints where each of these 10 is an array of 20 ints where each of these 20 is an array of 30 integers; all initialised to 0
